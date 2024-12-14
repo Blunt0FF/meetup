@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <title>Meetup - Events near</title>
+</head>
+
+<body>
+    <header class="header">
+        <div class="header__content--desktop">
+          <div class="header__right-block">
+            <div class="header__logo">
+              <a href="./index.html">
+                <img src="./img/logo.svg" alt="logo" />
+              </a>
+            </div>
+            <form class="search-form search-form--desktop" h>
+              <input
+                type="text"
+                class="search-form__input"
+                placeholder="Search events"
+              />
+              <input
+                type="text"
+                class="search-form__input"
+                value="Mountain View, CA"
+              />
+              <button type="button" class="search-form__button"></button>
+            </form>
+          </div>
+          <div class="header__left-block">
+            <div id="language">English</div>
+            <div class="header__login">
+              <button class="login__btn">Log in</button>
+              <button class="login__btn">Sign up</button>
+            </div>
+          </div>
+        </div>
+        <div class="search-form search-form--mobile">
+          <input
+            type="text"
+            class="search-form__input"
+            placeholder="Search events"
+          />
+          <button type="button" class="search-form__button"></button>
+        </div>
+      </header>
+
+    <main>
+        <div class="main-container">
+            <h1>Events near New York, NY</h1>
+            <br>
+            <br>
+            <p>Events</p>
+        </div>
+        <section class="filters-container">
+
+
+          <section class="filters-container">
+            <select id="categoryFilter">
+                <option value="">All Categories</option>
+                <option value="Social Activities">Social Activities</option>
+                <option value="Hobbies and Passions">Hobbies and Passions</option>
+                <option value="Health and Wellbeing">Health and Wellbeing</option>
+                <option value="Business">Business</option>
+                <option value="Technology">Technology</option>
+            </select>
+            <select id="typeFilter">
+                <option value="">All Types</option>
+                <option value="online">Online</option>
+                <option value="offline">Offline</option>
+            </select>
+            <select id="distanceFilter">
+                <option value="">All Distances</option>
+                <option value="5">5 km</option>
+                <option value="10">10 km</option>
+                <option value="15">15 km</option>
+                <option value="25">25 km</option>
+                <option value="50">50 km</option>
+                <option value="75">75 km</option>
+                <option value="100">100 km</option>
+            </select>
+            <select id="dateFilter">
+                <option value="">All Dates</option>
+                <option value="2024-03-13">Mar 13, 11:00 AM</option>
+                <option value="2024-03-14-11">Mar 14, 11:00 AM</option>
+                <option value="2024-03-14-20">Mar 14, 8:00 PM</option>
+                <option value="2024-03-16">Mar 16, 2:00 PM</option>
+                <option value="2024-03-23">Mar 23, 11:30 AM</option>
+                <option value="2024-03-30">Mar 30, 2:00 PM</option>
+            </select>
+            <button id="resetFiltersBtn">Reset Filters</button>
+        </section>
+
+        <section class="content">
+          <div class="events-map-container">
+            <div class="left">
+              <div id="eventsContainer" class="events-container"></div>
+            </div>
+            <div class="right">
+              <div class="find-events">
+                <h3>Find events near New York, NY</h3>
+                <div class="map-container">
+                  <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d193595.25422017163!2d-74.14483132197837!3d40.69763074465788!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY%2C%20USA!5e0!3m2!1sen!2sde!4v1734056778022!5m2!1sen!2sde"
+                    width="350" height="285" style="border:0;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade">
+                  </iframe>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer_width">
+          <div class="create_meetup">
+            <p>Create your own Meetup group.</p>
+            <button class="get_started">Get Started</button>
+          </div>
+  
+          <div class="footer_navi">
+            <ul>
+              <li>Your Account</li>
+              <li>Sign up</li>
+              <li>Log in</li>
+              <li>Help</li>
+              <li>Become an Affiliate</li>
+            </ul>
+  
+            <ul>
+              <li>Discover</li>
+              <li>Groups</li>
+              <li>Calendar</li>
+              <li>Topics</li>
+              <li>Cities</li>
+              <li>Online Events</li>
+              <li>Local Guides</li>
+              <li>Make Friends</li>
+            </ul>
+  
+            <ul>
+              <li>Meetup</li>
+              <li>About</li>
+              <li>Blog</li>
+              <li>Meetup Pro</li>
+              <li>Careers</li>
+              <li>Apps</li>
+              <li>Podcast</li>
+            </ul>
+          </div>
+          <div class="socials">
+          <p>Follow us</p>
+          <div class="download">
+          <ul class="soc_media">
+
+            <li><img src="./img/Facebook.svg" alt="" /></li>
+            <li><img src="./img/Twitter.svg" alt="" /></li>
+            <li><img src="./img/YouTube.svg" alt="" /></li>
+            <li><img src="./img/Instagram.svg" alt="" /></li>
+            <li><img src="./img/TikTok.svg" alt="" /></li>
+          </ul>
+          <div class="download_links">
+            <img src="./img/Google Play.svg" alt="" />
+            <img src="./img/download.svg.svg" alt="" />
+            
+          </div>
+        </div>
+          <ul class="last_footer">
+            <li>© 2024 Meetup</li>
+            <li>Terms of Service</li>
+            <li>Privacy Policy</li>
+            <li>Do Not Sell or Share My Personal Data</li>
+            <li>Cookie Policy</li>
+            <li>Help</li>
+          </ul>
+        </div>
+      </footer>
+
+    <script src="./script.js"></script>
+</body>
+
+</html>
