@@ -8,6 +8,10 @@
     <link rel="stylesheet" href="./styles/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <title>Meetup - Local Groups and Events</title>
+    <link
+    rel="stylesheet"
+    href=" https://chatbot.gitcommitt.com/assets/widget/style.css "
+/>
 </head>
 
 <body>
@@ -570,5 +574,16 @@
         </footer>
     
         <script src="./script.js"></script>
+        <script type="module" src="./main.js"></script>
+<script src="https://chatbot.gitcommitt.com/assets/widget/loader-snippet.js "></script>
+<script>
+  // Add random number to prevent caching
+  const scriptElement = document.createElement("script");
+  scriptElement.src = `https://chatbot.gitcommitt.com/assets/widget/chat-widget.umd.js?v=${Math.floor(
+    Math.random() * 10000000
+  )}`;
+  document.body.appendChild(scriptElement);
+</script>
+    
       </body>
     </html>
