@@ -31,7 +31,3 @@ Then open http://localhost:8000.
 ## Deployment
 
 The site is published with GitHub Pages from the `main` branch root. Every push to `main` redeploys automatically.
-
-## License
-
-[MIT](LICENSE)
