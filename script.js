@@ -1,10 +1,9 @@
-// Массив мероприятий
 const eventsStore = [
   {
     title: "INFJ Personality Type - Coffee Shop Meet & Greet",
-    description: "Being an INFJ",
+    group: "Being an INFJ",
     date: new Date(2024, 2, 23, 15),
-    image: "https://images.unsplash.com/photo-1541167760496-1628856ab772?q=80&w=1037&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D%201037w",
+    image: "https://images.unsplash.com/photo-1541167760496-1628856ab772?q=80&w=1037&auto=format&fit=crop",
     type: "offline",
     attendees: 99,
     category: "Hobbies and Passions",
@@ -12,9 +11,9 @@ const eventsStore = [
   },
   {
     title: "NYC AI Users - AI Tech Talks, Demo & Social: RAG Search and Customer Experience",
-    description: "New York AI Users",
+    group: "New York AI Users",
     date: new Date(2024, 2, 23, 11, 30),
-    image: "https://images.unsplash.com/photo-1696258686454-60082b2c33e2?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    image: "https://images.unsplash.com/photo-1696258686454-60082b2c33e2?q=80&w=870&auto=format&fit=crop",
     type: "offline",
     attendees: 43,
     category: "Technology",
@@ -22,9 +21,9 @@ const eventsStore = [
   },
   {
     title: "Book 40+ Appointments Per Month Using AI and Automation",
-    description: "New Jersey Business Network",
+    group: "New Jersey Business Network",
     date: new Date(2024, 2, 16, 14),
-    image: "https://images.unsplash.com/photo-1674027444485-cec3da58eef4?q=80&w=1032&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    image: "https://images.unsplash.com/photo-1674027444485-cec3da58eef4?q=80&w=1032&auto=format&fit=crop",
     type: "online",
     attendees: 25,
     category: "Technology",
@@ -32,9 +31,9 @@ const eventsStore = [
   },
   {
     title: "Dump writing group weekly meetup",
-    description: "Dump writing group",
+    group: "Dump writing group",
     date: new Date(2024, 2, 13, 11),
-    image: "https://plus.unsplash.com/premium_photo-1678453146992-b80d66df9152?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    image: "https://plus.unsplash.com/premium_photo-1678453146992-b80d66df9152?q=80&w=870&auto=format&fit=crop",
     type: "online",
     attendees: 77,
     category: "Business",
@@ -42,9 +41,9 @@ const eventsStore = [
   },
   {
     title: "Over 40s, 50s, & 60s Senior Singles Chat, Meet & Dating Community",
-    description: "Over 40s, 50s, 60s Singles Chat, Meet & Dating Community",
+    group: "Over 40s, 50s, 60s Singles Chat, Meet & Dating Community",
     date: new Date(2024, 2, 14, 11),
-    image: "https://plus.unsplash.com/premium_photo-1706005542509-a460d6efecb0?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    image: "https://plus.unsplash.com/premium_photo-1706005542509-a460d6efecb0?q=80&w=870&auto=format&fit=crop",
     type: "online",
     attendees: 140,
     category: "Social Activities",
@@ -52,9 +51,9 @@ const eventsStore = [
   },
   {
     title: "All Nations - Manhattan Missions Church Bible Study",
-    description: "Manhattan Bible Study Meetup Group",
+    group: "Manhattan Bible Study Meetup Group",
     date: new Date(2024, 2, 14, 11),
-    image: "https://plus.unsplash.com/premium_photo-1679488248784-65a638a3d3fc?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    image: "https://plus.unsplash.com/premium_photo-1679488248784-65a638a3d3fc?q=80&w=870&auto=format&fit=crop",
     type: "offline",
     attendees: 35,
     category: "Health and Wellbeing",
@@ -62,78 +61,103 @@ const eventsStore = [
   },
 ];
 
-// Получаем элементы из DOM
-const resetFiltersBtn = document.getElementById('resetFiltersBtn');
-const categoryFilter = document.getElementById('categoryFilter');
-const typeFilter = document.getElementById('typeFilter');
-const distanceFilter = document.getElementById('distanceFilter');
-const dateFilter = document.getElementById('dateFilter');
-const eventsContainer = document.getElementById('eventsContainer');
+const resetFiltersBtn = document.getElementById("resetFiltersBtn");
+const categoryFilter = document.getElementById("categoryFilter");
+const typeFilter = document.getElementById("typeFilter");
+const distanceFilter = document.getElementById("distanceFilter");
+const dateFilter = document.getElementById("dateFilter");
+const eventsContainer = document.getElementById("eventsContainer");
 
-// Функция для отображения мероприятий
-function renderEvents(events) {
-  eventsContainer.innerHTML = ''; // Очистка контейнера
+const dateFormat = new Intl.DateTimeFormat("en-US", { weekday: "short", month: "short", day: "numeric" });
+const timeFormat = new Intl.DateTimeFormat("en-US", { hour: "numeric", minute: "2-digit" });
 
-  events.forEach(event => {
-    const eventCard = document.createElement('div');
-    eventCard.classList.add('event-card');
-
-    eventCard.innerHTML = `
-      <img src="${event.image}" alt="${event.title}" class="event-card-image">
-      <div class="event-card-content">
-        <div class="event-title">${event.title}</div>
-        <div class="event-details">
-          <div>Category: ${event.category}</div>
-          <div>Distance: ${event.distance} km</div>
-          <div>Date: ${event.date.toLocaleDateString()} ${event.date.toLocaleTimeString()}</div>
-          <div>Attendees: ${event.attendees}</div>
-        </div>
-      </div>
-    `;
-    eventsContainer.appendChild(eventCard);
-  });
+// Local calendar day, so filtering doesn't shift across the UTC boundary.
+function dateKey(date) {
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+  return `${date.getFullYear()}-${month}-${day}`;
 }
 
-// Функция для фильтрации мероприятий
+function fillDateOptions() {
+  const days = new Map();
+  eventsStore.forEach((event) => {
+    const key = dateKey(event.date);
+    if (!days.has(key)) days.set(key, event.date);
+  });
+
+  [...days.entries()]
+    .sort(([a], [b]) => a.localeCompare(b))
+    .forEach(([key, date]) => {
+      const option = document.createElement("option");
+      option.value = key;
+      option.textContent = dateFormat.format(date);
+      dateFilter.appendChild(option);
+    });
+}
+
+function renderEvents(events) {
+  eventsContainer.innerHTML = "";
+
+  if (events.length === 0) {
+    const empty = document.createElement("p");
+    empty.className = "events-empty";
+    empty.textContent = "No events match these filters.";
+    eventsContainer.appendChild(empty);
+    return;
+  }
+
+  [...events]
+    .sort((a, b) => a.date - b.date)
+    .forEach((event) => {
+      const card = document.createElement("article");
+      card.className = "event-card";
+      card.innerHTML = `
+        <img src="${event.image}" alt="" loading="lazy">
+        <div class="event-card-content">
+          <span class="event-badge">${event.type}</span>
+          <h3 class="event-title"></h3>
+          <p class="event-group"></p>
+          <div class="event-details">
+            <div>${dateFormat.format(event.date)} · ${timeFormat.format(event.date)}</div>
+            <div>${event.category} · ${event.distance} km</div>
+            <div>${event.attendees} going</div>
+          </div>
+        </div>
+      `;
+      card.querySelector(".event-title").textContent = event.title;
+      card.querySelector(".event-group").textContent = event.group;
+      eventsContainer.appendChild(card);
+    });
+}
+
 function filterEvents() {
   const categoryValue = categoryFilter.value;
   const typeValue = typeFilter.value;
   const distanceValue = parseInt(distanceFilter.value, 10);
   const dateValue = dateFilter.value;
 
-  const filteredEvents = eventsStore.filter(event => {
+  const filteredEvents = eventsStore.filter((event) => {
     const matchesCategory = categoryValue ? event.category === categoryValue : true;
     const matchesType = typeValue ? event.type === typeValue : true;
     const matchesDistance = distanceValue ? event.distance <= distanceValue : true;
-    const matchesDate = dateValue
-      ? (() => {
-          // Получаем только дату без времени из события и фильтра
-          const eventDate = event.date.toISOString().split('T')[0];
-          const selectedDate = dateValue.split('T')[0];
-          return eventDate === selectedDate;
-        })()
-      : true;
-
+    const matchesDate = dateValue ? dateKey(event.date) === dateValue : true;
     return matchesCategory && matchesType && matchesDistance && matchesDate;
   });
 
   renderEvents(filteredEvents);
 }
 
-// Сброс фильтров
-resetFiltersBtn.addEventListener('click', () => {
-  categoryFilter.value = '';
-  typeFilter.value = '';
-  distanceFilter.value = '';
-  dateFilter.value = '';
+resetFiltersBtn.addEventListener("click", () => {
+  categoryFilter.value = "";
+  typeFilter.value = "";
+  distanceFilter.value = "";
+  dateFilter.value = "";
   renderEvents(eventsStore);
 });
 
-// Слушатели на изменение фильтров
-categoryFilter.addEventListener('change', filterEvents);
-typeFilter.addEventListener('change', filterEvents);
-distanceFilter.addEventListener('change', filterEvents);
-dateFilter.addEventListener('change', filterEvents);
+[categoryFilter, typeFilter, distanceFilter, dateFilter].forEach((filter) => {
+  filter.addEventListener("change", filterEvents);
+});
 
-// Отображение всех мероприятий при загрузке
+fillDateOptions();
 renderEvents(eventsStore);
