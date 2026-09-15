@@ -4,7 +4,7 @@
 
 A responsive clone of the Meetup landing page and events listing, built with plain HTML, CSS and vanilla JavaScript — no frameworks, no build step.
 
-**Live:** https://blunt0ff.github.io/meetup/
+**Live:** https://kreal-exe.github.io/meetup/
 
 ## Pages
 
